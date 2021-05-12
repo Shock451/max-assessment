@@ -9,7 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(1.5, 10, 1.5, 3),
-        borderTop: '0.4px solid #DBE3EE',
         backgroundColor: '#ffffff',
     },
 }))

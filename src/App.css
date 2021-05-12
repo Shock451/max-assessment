@@ -71,7 +71,7 @@ label {
 .hero-text {
     color: #001A03;
     font-weight: bold;
-    font-size: 1.6em;
+    font-size: 1.6rem;
 }
 
 .copy {
@@ -80,13 +80,13 @@ label {
 }
 
 .text-20 {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-family: Rubik;
     color: #000000;
 }
 
 .text-25 {
-    font-size: 25px;
+    font-size: 1.5rem;
     font-family: Rubik;
     color: rgba(44, 44, 44, 1);
 }
@@ -96,7 +96,7 @@ label {
 }
 
 .text-10 {
-    font-size: 10px;
+    font-size: .75rem;
     font-family: Rubik;
 }
 
@@ -139,8 +139,9 @@ label {
     color: rgba(95, 185, 96, 1);
 }
 
-.main-area: {
+.main-area {
     background-color: #F6F6F6;
+    margin-bottom: 2rem;
 }
 
 .select-box {
@@ -179,7 +180,7 @@ input::-ms-input-placeholder {
 }
 
 .text-18 {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-family: Source Sans Pro;
     color: #000000;
 }
@@ -207,4 +208,9 @@ input::-ms-input-placeholder {
 
 .blue {
     color: rgba(54, 32, 177, 1);
+}
+
+.mui-table {
+    min-width: 650px;
+    border: none;
 }
