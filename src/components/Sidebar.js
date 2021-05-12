@@ -9,8 +9,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#ffffff',
     height: '100vh',
+    position: 'sticky',
+    top: '0',
     paddingLeft: theme.spacing(4),
     paddingTop: theme.spacing(4),
+    borderRight: '0.4px solid #DBE3EE',
   },
   listItem: {
     display: 'flex',
@@ -35,9 +38,9 @@ function Sidebar() {
 
   function isActive(path) {
     if (pathname === path || pathname === path + '/') {
-      return '-active';
+      return "-active";
     }
-    return '';
+    return "";
   }
 
   return (

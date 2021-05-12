@@ -6,6 +6,7 @@ import {
     Hidden,
     makeStyles,
 } from '@material-ui/core';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,6 +49,7 @@ const useStyles = makeStyles(theme => ({
 function Login() {
 
     const classes = useStyles();
+    const history = useHistory();
     const [state, setState] = React.useState({
         email: '',
         password: '',
@@ -57,9 +59,11 @@ function Login() {
         setState({ ...state, [event.target.name]: event.target.value });
     }
 
-    const handleSubmit = (e) => {
-        if (!(state.password.length >= 8 && /\d+/.test(state.password) && /[A-Za-z]+/.test(state.password))) {
-            e.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        if (state.password.length >= 8 && /\d+/.test(state.password) && /[A-Za-z]+/.test(state.password)) {
+            history.push("/dashboard");
         }
     }
 
@@ -88,7 +92,7 @@ function Login() {
             </Hidden>
             <Grid item xs={12} md={5} className={classes.rightArea}>
                 <Box className={classes.rightContent}>
-                    <form id="login-form" method="POST" action="/dashboard" onSubmit={handleSubmit}>
+                    <form id="login-form" onSubmit={handleSubmit}>
                         <Box my={3} className={classes.titleText}>
                             Sign in to continue to your account.
                         </Box>

@@ -46,7 +46,7 @@ function Pagination(props) {
                 </Box>
                 <Grid item xs={12} md>
                     <Box mx={{ xs: 2, md: 5 }} component="span" className="text-16 black-2">
-                        Showing 1-20 of 200
+                        Showing 1-20 of {total}
                     </Box>
                     <IconButton className="arrow-btn">
                         <img
