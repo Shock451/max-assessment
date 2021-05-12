@@ -12,7 +12,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(1.5, 3),
-        borderTop: '0.4px solid #DBE3EE',
         backgroundColor: '#ffffff',
     },
 }))
@@ -22,8 +21,10 @@ function Pagination(props) {
     const classes = useStyles();
 
     // eslint-disable-next-line no-unused-vars
-    const { count, total, prev, next, title } = props;
+    const { count, search, handleInput, total, previous, next, title, page, changePage } = props;
 
+    const start = (page * 10) > total ? (total - count + 1) : (((page * 10) - 10)) + 1;
+    const end = (start + count) - 1;
     return (
         <Grid
             container
@@ -42,19 +43,19 @@ function Pagination(props) {
                     </Box>
                 </ButtonBase>
                 <Box ml={2} component="span" className="text-16 black-2">
-                    200 Total
+                    {total} Total
                 </Box>
                 <Grid item xs={12} md>
                     <Box mx={{ xs: 2, md: 5 }} component="span" className="text-16 black-2">
-                        Showing 1-20 of {total}
+                        Showing {start || '-'}-{end || '-'} of {total || '-'}
                     </Box>
-                    <IconButton className="arrow-btn">
+                    <IconButton className="arrow-btn" disabled={!previous} onClick={() => changePage(-1)}>
                         <img
                             src="/assets/icons/arrow-point-to-left.svg"
                             alt="arrow left"
                         />
                     </IconButton>
-                    <IconButton className="arrow-btn">
+                    <IconButton className="arrow-btn" disabled={!next} onClick={() => changePage(1)}>
                         <img
                             src="/assets/icons/arrow-point-to-left.svg"
                             alt="arrow right"
@@ -68,7 +69,8 @@ function Pagination(props) {
             <Grid item xs={12} md={3} className="input-box">
                 <input
                     name="search"
-                    onChange={null}
+                    onChange={handleInput}
+                    value={search}
                     placeholder={`Search for ${title}`}
                 />
                 <img src="/assets/icons/search.svg" alt="search" />
@@ -80,9 +82,13 @@ function Pagination(props) {
 Pagination.propTypes = {
     count: PropTypes.number,
     next: PropTypes.string,
-    prev: PropTypes.string,
+    previous: PropTypes.string,
     total: PropTypes.number,
     title: PropTypes.string,
+    page: PropTypes.number,
+    changePage: PropTypes.func,
+    handleInput: PropTypes.func,
+    search: PropTypes.string,
 };
 
 export default Pagination;

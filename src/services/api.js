@@ -9,9 +9,17 @@ const urls = {
     species: '/species/',
 }
 
-async function query(resource) {
+async function query(resource, page = null, search = null) {
     try {
-        const res = await axios.get(BASEURL + urls[resource]);
+        let extra = "";
+        if (!page) {
+            page = 1;
+        }
+        extra += `page=${page}`
+        if (search) {
+            extra += `&search=${search}`;
+        }
+        const res = await axios.get(`${BASEURL}${urls[resource]}?${extra}`);
         const { status, data } = res;
         console.log(data)
         return {

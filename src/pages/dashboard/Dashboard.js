@@ -24,13 +24,6 @@ const TableCell = withStyles({
 })(MuiTableCell);
 
 const useStyles = makeStyles((theme) => ({
-    statBox: {
-        padding: theme.spacing(2.5, 3.5, 5),
-    },
-    table: {
-        minWidth: 650,
-        border: 'none',
-    },
     iconBox: {
         borderRadius: '11px',
         width: '41px',
@@ -70,13 +63,13 @@ function Dashboard() {
             setStats({
                 starships: responses[0].data.count,
                 people: responses[1].data.count,
-                vehicle: responses[2].data.count,
+                vehicles: responses[2].data.count,
                 species: responses[3].data.count,
                 films: responses[4].data.count,
             });
             setData(responses[4].data);
         }
-
+        
         collateStats();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -135,7 +128,7 @@ function Dashboard() {
                         <Box px={{ md: 8, xs: 4 }} py={5} className="table-container">
                             <Box mb={2} className="text-25 medium">Films</Box>
                             <TableContainer>
-                                <Table className={classes.table} aria-label="data table">
+                                <Table className="mui-table" aria-label="data table">
                                     <TableHead>
                                         <TableRow>
                                             <TableCell><Box className="text-16 medium grey">Film title</Box></TableCell>

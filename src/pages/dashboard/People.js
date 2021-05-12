@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 
 import { query } from '../../services/api';
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Pagination from '../../components/Pagination';
 import { cflew } from '../../helper/utility';
 
@@ -22,47 +22,8 @@ const TableCell = withStyles({
     }
 })(MuiTableCell);
 
-const useStyles = makeStyles((theme) => ({
-    mainArea: {
-        backgroundColor: '#F6F6F6',
-    },
-    statBox: {
-        padding: theme.spacing(2.5, 3.5, 5),
-    },
-    table: {
-        minWidth: 650,
-        border: 'none',
-    },
-    iconBox: {
-        borderRadius: '11px',
-        width: '41px',
-        height: '43px',
-        padding: theme.spacing(1),
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        '& > img': {
-            width: '100%',
-            height: 'auto',
-        }
-    },
-    icon: {
-        borderRadius: 3,
-        width: 16,
-        height: 16,
-        backgroundColor: '#DDDBDB',
-        '$root.Mui-focusVisible &': {
-            outline: '2px auto rgba(19,124,189,.6)',
-            outlineOffset: 2,
-        },
-        'input:hover ~ &': {
-            backgroundColor: '#ebf1f5',
-        },
-    },
-}));
-
-
 function People() {
-    const classes = useStyles();
+    
     const [data, setData] = React.useState({
         results: [],
         next: "",
@@ -70,25 +31,40 @@ function People() {
         count: 0,
     });
 
+    const [page, setPage] = React.useState(1);
+    const [search, setSearch] = React.useState("");
+
+    async function getData() {
+        let { payload } = await query("people", page, search);
+        setData(payload);
+    };
+
     React.useEffect(() => {
-        async function getData() {
-            let { payload } = await query("people");
-            setData(payload);
-        };
-
         getData();
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [page, search]);
 
+    const { results, next, previous, count } = data;
 
-    const { results, next, prev, count } = data;
+    function handleInput(event){
+        setSearch(event.target.value);
+    }
+
+    function handleChangePage(num) {
+        setPage(page + num);
+    }
 
     return (
         <>
             <Pagination
+                search={search}
+                handleInput={handleInput}
                 count={results.length}
                 total={count}
+                changePage={handleChangePage}
                 next={next}
-                prev={prev}
+                previous={previous}
+                page={page}
                 title="people"
             />
             <Box mt={3.5} px={3.5}>
@@ -96,7 +72,7 @@ function People() {
                     <Grid item xs={12}>
                         <Box px={3} py={5} className="table-container">
                             <TableContainer>
-                                <Table className={classes.table} aria-label="data table">
+                                <Table className="mui-table" aria-label="data table">
                                     <TableHead>
                                         <TableRow>
                                             <TableCell><Box className="text-16 medium grey">Name</Box></TableCell>

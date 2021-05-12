@@ -11,6 +11,10 @@ import { capitalize } from "../helper/utility";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#FFFFFF',
+    position: 'sticky',
+    top: 0,
+    zIndex: 99999,
+    borderBottom: '0.4px solid #DBE3EE',
     padding: theme.spacing(1.5, 10, 1.5, 3),
   },
   avatar: {

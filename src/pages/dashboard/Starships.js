@@ -25,28 +25,6 @@ const TableCell = withStyles({
 })(MuiTableCell);
 
 const useStyles = makeStyles((theme) => ({
-    mainArea: {
-        backgroundColor: '#F6F6F6',
-    },
-    statBox: {
-        padding: theme.spacing(2.5, 3.5, 5),
-    },
-    table: {
-        minWidth: 650,
-        border: 'none',
-    },
-    iconBox: {
-        borderRadius: '11px',
-        width: '41px',
-        height: '43px',
-        padding: theme.spacing(1),
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        '& > img': {
-            width: '100%',
-            height: 'auto',
-        }
-    },
     icon: {
         borderRadius: 3,
         width: 16,
@@ -69,28 +47,44 @@ function Starships() {
     const [data, setData] = React.useState({
         results: [],
         next: "",
-        prev: "",
+        previous: "",
         count: 0,
     });
 
+    const [page, setPage] = React.useState(1);
+    const [search, setSearch] = React.useState("");
+
+    async function getData() {
+        let { payload } = await query("starships", page, search);
+        setData(payload);
+    };
+
     React.useEffect(() => {
-        async function getData() {
-            let { payload } = await query("starships");
-            setData(payload);
-        };
-
         getData();
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [page, search]);
 
-    const { results, next, prev, count } = data;
+    const { results, next, previous, count } = data;
+
+    function handleInput(event) {
+        setSearch(event.target.value);
+    }
+
+    function handleChangePage(num) {
+        setPage(page + num);
+    }
 
     return (
         <>
             <Pagination
+                search={search}
+                handleInput={handleInput}
                 count={results.length}
                 total={count}
+                changePage={handleChangePage}
                 next={next}
-                prev={prev}
+                previous={previous}
+                page={page}
                 title="starships"
             />
             <Box mt={3.5} px={3.5}>
@@ -98,7 +92,7 @@ function Starships() {
                     <Grid item xs={12}>
                         <Box px={3} py={5} className="table-container">
                             <TableContainer>
-                                <Table className={classes.table} aria-label="data table">
+                                <Table className="mui-table" aria-label="data table">
                                     <TableHead>
                                         <TableRow>
                                             <TableCell><Box className="text-16 medium grey"></Box></TableCell>
