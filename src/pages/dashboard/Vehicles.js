@@ -87,7 +87,8 @@ function Vehicles() {
     return (
         <>
             <Pagination
-                count={count}
+                count={results.length}
+                total={count}
                 next={next}
                 prev={prev}
                 title="vehicles" 
