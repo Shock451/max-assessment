@@ -1,4 +1,4 @@
-# my_max_assessment
+# max-assessment
 MAX.ng Front-end Engineer Hands-on Test
 
 
