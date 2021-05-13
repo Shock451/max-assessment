@@ -1,9 +1,7 @@
 #  Max ng Assessment 
 Front End Engineer - Oladosu Abdullahi
 
-Click [Here](https://zealous-easley-28e202.netlify.app) to view it - Netlify.
-
-Click [Here](https://max-wars.herokuapp.com/) to view it - Heroku.
+Click [Here](https://max-wars.herokuapp.com/) to view it.
 
 &nbsp; 
 
