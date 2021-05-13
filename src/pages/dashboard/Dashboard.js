@@ -114,7 +114,7 @@ function Dashboard() {
     return (
         <>
             <FilterBox />
-            <Box mt={3.5} px={3.5}>
+            <Box my={3.5} px={3.5}>
                 <Grid container spacing={2}>
                     {statistics.map((stat, index) => {
                         let { name, color, icon, count} = stat;
@@ -125,7 +125,7 @@ function Dashboard() {
                         )
                     })}
                     <Grid item xs={12}>
-                        <Box px={{ md: 8, xs: 4 }} py={5} className="table-container">
+                        <Box px={{ md: 8, xs: 4 }} py={4} className="table-container">
                             <Box mb={2} className="text-25 medium">Films</Box>
                             <TableContainer>
                                 <Table className="mui-table" aria-label="data table">

@@ -87,10 +87,10 @@ function Starships() {
                 page={page}
                 title="starships"
             />
-            <Box mt={3.5} px={3.5}>
+            <Box my={3.5} px={3.5}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Box px={3} py={5} className="table-container">
+                        <Box px={3} py={1} className="table-container">
                             <TableContainer>
                                 <Table className="mui-table" aria-label="data table">
                                     <TableHead>

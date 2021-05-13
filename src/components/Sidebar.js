@@ -55,7 +55,7 @@ function Sidebar() {
             <Link key={url + index} to={url} className={clsx(classes.listItem, {
               [classes.active]: isActive(url)
             })}>
-              <img src={`/assets/icons/${icon}${isActive(url)}.svg`} alt={name} />
+              <img src={`/assets/icons/${icon}${isActive(url)}.svg`} alt={name} className="link-icon" />
               <Box className={clsx(classes.listItemText, 'text-16')}>{name}</Box>
             </Link>
           )
