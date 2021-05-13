@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Redirect,
     Route,
     Switch
 } from "react-router-dom";
@@ -15,6 +16,10 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
 function DashboardRoute() {
+
+    if (!localStorage.getItem("authenticated")){
+        return <Redirect to="/login" />
+    }
     return (
         <Grid container>
             <Hidden mdDown>

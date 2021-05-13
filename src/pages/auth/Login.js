@@ -63,6 +63,7 @@ function Login() {
         event.preventDefault();
         
         if (state.password.length >= 8 && /\d+/.test(state.password) && /[A-Za-z]+/.test(state.password)) {
+            localStorage.setItem("authenticated", "true");
             history.push("/dashboard");
         }
     }
