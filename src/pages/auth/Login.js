@@ -61,11 +61,11 @@ function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
-        if (state.password.length >= 8 && /\d+/.test(state.password) && /[A-Za-z]+/.test(state.password)) {
-            localStorage.setItem("authenticated", "true");
-            history.push("/dashboard");
-        }
+
+        // if (state.password.length >= 8 && /\d+/.test(state.password) && /[A-Za-z]+/.test(state.password)) {
+        localStorage.setItem("authenticated", "true");
+        history.push("/dashboard");
+        // }
     }
 
     return (
@@ -80,8 +80,8 @@ function Login() {
                     <Box className={classes.leftContent}>
                         <Box ml={8} my={3} className="hero-text">
                             Welcome to Star Wars <br />
-                        the Clone Wars
-                    </Box>
+                            the Clone Wars
+                        </Box>
                         <Box>
                             <img src={'/assets/to_the_stars.png'} alt="to the stars" style={{
                                 width: '350px',
